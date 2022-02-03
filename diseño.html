@@ -94,18 +94,82 @@
         <div class="row">
           <div class="col-lg-4 video-box">
             <img center src="assets/img/T1.png" class="img-fluid" alt="">
+            <img center src="assets/img/T2.png" class="img-fluid" alt="">
+            <img center src="assets/img/T3.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-8 d-flex flex-column justify-content-center p-5">
+            <h4 class="title">Sensores.</h4>
+
+            <div class="icon-box">
+              
+              
+              <h5 class="title">Transportador 1 (alimentador de rines).</h5>
+              <p>Este transportador de rodillos se encarga de llevar los rines al manipulador que los posa luego en el transportador central. Consta de dos sensores lineales, el primero (de derecha a izquierda) se encarga al activarse de generar nuevos elementos por lo que carece de un sentido práctico en una implementación real; el segundo se encarga de detener el transportador al detectar un rin e indicar al manipulador que hay un elemento esperando a ser recogido.</p>
+              <h5 class="title">Transportador 2 (alimentador de llantas).</h5>
+              <p>Este transportador de llantas se encarga de llevar las llantas hasta el manipulador que luego las posa en el transportador central. De forma similar a la anterior esta celda cuenta con dos sensores lineales que cumplen las funciones de generación de elemento nuevo y detección de elemento en el final del recorrido.</p>
+              <h5 class="title">Transportador 3 (montaje).</h5>
+              <p>Este transportador es el encargado de recibir y mover el montaje de rin y llanta, consta de un sensor lineal encargado de detectar un rin cuando este llega a posición y está listo para recibir una llanta. También hay tres sensores planares los cuales cumplen las siguientes funciones: el primero (de derecha a izquierda) se encarga de detectar los rines apenas son dejados sobre el transportador y los sigue detectando hasta que estos se ponen en posición de recepción de llanta; el segundo se encarga de realizar la detección de la llanta posada sobre el rin; finalmente el ultimo (el cual se observa sutilmente a la izquierda de la imagen) tiene la función de eliminar los elementos que llegan al final de la ruta evitando interacciones físicas anómalas a lo largo de la simulación.</p>
+   </div>
+  
+   
+<section class="why-us" data-aos="fade-up" date-aos-delay="200">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4 video-box">
+             <img center src="assets/img/L1.jpg" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-8 d-flex flex-column justify-content-center p-5">
 
             <div class="icon-box">
               
-              <h4 class="title">Sensores.</h4>
-              <h5 class="title">Transportador 1 (alimentador de rines).</h5>
-              <p>Este transportador de rodillos se encarga de llevar los rines al manipulador que los posa luego en el transportador central. Consta de dos sensores lineales, el primero (de derecha a izquierda) se encarga al activarse de generar nuevos elementos por lo que carece de un sentido práctico en una implementación real; el segundo se encarga de detener el transportador al detectar un rin e indicar al manipulador que hay un elemento esperando a ser recogido.</p>
-              
+              <h4 class="title">Lógica de estación.</h4>
+      <p>Cada transportador fue construido como una celda independiente, la lógica más sencilla la tenían los dos de alimentación (Celda_Llanta y Celda_Rin) cuyas interacciones se reducían a indicar cuando el elemento transportado estaba listo para ser recogido y recibir información de la posición de su manipulador correspondiente respecto a ellos, si están o no en el lugar de recogida. El elemento Celda_Central (contenedor del transportador principal) tiene dos entradas las cuales corresponden a las indicaciones de los manipuladores respecto a la posición, concretamente indican si estos están en posición de descarga de elementos; consta también de cuatro salidas digitales, dos de ellas se encargan de informar a los controladores de cada manipulador que la pieza que transportaban ya fue posada sobre el transportar, las otras dos señales les comunican a estos si pueden llevar a cabo la trayectoria de descarga. </p>
+      <p>Los controladores de los manipuladores tienen estructuras idénticas: tres entradas que brindan información sobre si hay un elemento listo para ser recogido, si el elemento transportado ya fue soltado y si el espacio donde se llevará a cabo la descarga está libre; finalmente genera dos salidas digitales mediante las que informa que el elemento será descargado y otra será recogido.</p>
+      
+      </div>
+  
+   
+<section class="why-us" data-aos="fade-up" date-aos-delay="200">
+      <div class="container">
 
-  </main><!-- End #main -->
+        <div class="row">
+          <div class="col-lg-4 video-box">
+             <img center src="assets/img/L2.jpg" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-8 d-flex flex-column justify-content-center p-5">
+
+            <div class="icon-box">
+              
+              <h4 class="title">Lógica Celda_Central.</h4>
+      <p>Esta celda consta de cuatro sensores: PlaneSensor_2 se encarga de detectar los rines desde que son posados sobre el transportador hasta que están en posición de recibir su respectiva llanta; LineSensor se encarga de detectar el rin que esta en posición de recibir llanta; PlaneSensor_3 detecta la llanta una vez posada sobre el rin; PlaneSensor detecta los elementos que llegan al final del transportador y los elimina mediante el bloque Sink. En la parte derecha se observan los bloques Soltar_Rin y Detacher que se encargan de desacoplar los elementos de las herramientas de los manipuladores durante la descarga. También se observa el bloque Control_Banda que activa y desactiva el movimiento del transportador a partir de la configuración de compuertas lógicas de la parte central inferior. Finalmente se puede observar en la parte central superior la configuración lógica que indica al controlador del manipulador de las llantas que puede realizar la descarga. </p>
+      
+      
+      </div>
+  
+   
+<section class="why-us" data-aos="fade-up" date-aos-delay="200">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4 video-box">
+             <img center src="assets/img/L3.jpg" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-8 d-flex flex-column justify-content-center p-5">
+
+            <div class="icon-box">
+              
+              <h4 class="title">Lógica Celda_Central.</h4>
+      <p>En estas celdas los sensores Sensor_Gen_Rin y Sensor_Gen_Llanta se encargan de indicar a los bloques Gen_Rin y Gen_Llanta que se deben generar elementos nuevos. Los sensores Sensor_Parar_Rin y Sensor_Parar_Banda se encargan de indicar cuando un elemento ha llegado al final de su recorrido y está listo para ser recogido por el manipulador, mediante esta señal el bloque Control_Banda (llamado igual en ambas celdas) permite controlar el desplazamiento de los transportadores; estos sensores además permiten a los bloques Conect_Rin y Conect_Llanta identificar el elemento que debe ser acoplado a la herramienta una vez esta esté en posición. </p>
+            </div>
+              
+              
+              
+ </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
